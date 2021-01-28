@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CerberusGate</string>
+    <string name="Otp">Otp</string>
+    <string name="auth_layer">View</string>
 </resources>
