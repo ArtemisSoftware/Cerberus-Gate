@@ -2,4 +2,6 @@
     <string name="app_name">CerberusGate</string>
     <string name="Otp">Otp</string>
     <string name="auth_layer">View</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

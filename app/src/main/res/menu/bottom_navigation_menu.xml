@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/auth_one"
+        android:id="@+id/navigation_auth_one"
         android:icon="@drawable/ic_baseline_looks_one_24"
         android:title="@string/Otp" />
     <item
-        android:id="@+id/auth_two"
+        android:id="@+id/navigation_auth_two"
         android:icon="@drawable/ic_baseline_looks_two_24"
         android:title="@string/auth_layer" />
 
