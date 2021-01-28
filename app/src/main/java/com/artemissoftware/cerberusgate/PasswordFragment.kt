@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.artemissoftware.cerberusgate.util.SoftKeyboardUtils
 import com.google.android.material.textfield.TextInputEditText
 import com.keijumt.passwordview.ActionListener
 import com.keijumt.passwordview.PasswordView
@@ -42,7 +43,7 @@ class PasswordFragment : Fragment(), ActionListener,TextWatcher {
 
         tokenInput.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
-                //--SoftKeyboardUtils.openSoftKeyboard(activity, v)
+                SoftKeyboardUtils.openSoftKeyboard(activity, v)
             }
         }
 
@@ -69,14 +70,14 @@ class PasswordFragment : Fragment(), ActionListener,TextWatcher {
     }
 
     override fun onEndJudgeAnimation() {
-        TODO("Not yet implemented")
+
     }
 
 
 
     override fun afterTextChanged(code: Editable?) {
         if (code?.length == 6) {
-            //--SoftKeyboardUtils.closeSoftKeyboard(activity)
+            SoftKeyboardUtils.closeSoftKeyboard(activity)
         }
     }
 
