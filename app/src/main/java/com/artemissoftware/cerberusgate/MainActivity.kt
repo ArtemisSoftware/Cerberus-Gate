@@ -42,7 +42,10 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 //openFragment(SmsFragment.newInstance("", ""))
                 return true
             }
-
+            R.id.navigation_auth_three -> {
+                openFragment(PasswordFragment())
+                return true
+            }
         }
         return false
     }

@@ -4,4 +4,7 @@
     <string name="auth_layer">View</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="type_your_password">Type your \nPassword</string>
+    <string name="please_type_your_pin">Please type your pin</string>
+    <string name="auth_password">Password</string>
 </resources>
