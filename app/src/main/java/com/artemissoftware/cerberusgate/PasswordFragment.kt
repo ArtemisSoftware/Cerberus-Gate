@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.artemissoftware.cerberusgate.util.Constants
 import com.artemissoftware.cerberusgate.util.SoftKeyboardUtils
 import com.google.android.material.textfield.TextInputEditText
 import com.keijumt.passwordview.ActionListener
@@ -32,6 +33,7 @@ class PasswordFragment : Fragment(), ActionListener,TextWatcher {
         var fragmentView = inflater.inflate(R.layout.fragment_password, container, false);
 
         password = fragmentView.findViewById(R.id.passwordView)
+        tokenInput = fragmentView.findViewById(R.id.token_input)
 
         password.setListener(this)
 
@@ -47,23 +49,26 @@ class PasswordFragment : Fragment(), ActionListener,TextWatcher {
             }
         }
 
+        tokenInput.addTextChangedListener(this)
+
         return fragmentView
     }
 
     override fun onCompleteInput(inputText: String) {
         inputText.let {
 
-            if(it.equals("1111")){
+            if(Constants.validatePassword(it)){
 
                 password.correctAnimation()
                 Toast.makeText(requireContext(), inputText, Toast.LENGTH_SHORT).show();
             }
             else{
 
-                password.reset()
                 password.incorrectAnimation()
+                password.reset()
+                tokenInput.setText("")
 
-                Toast.makeText(requireContext(), "Erro", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), "Erro: " + inputText, Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -76,7 +81,7 @@ class PasswordFragment : Fragment(), ActionListener,TextWatcher {
 
 
     override fun afterTextChanged(code: Editable?) {
-        if (code?.length == 6) {
+        if (code?.length == Constants.PASSWORD_SIZE) {
             SoftKeyboardUtils.closeSoftKeyboard(activity)
         }
     }

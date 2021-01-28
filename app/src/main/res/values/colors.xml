@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#002bff</color>
-    <color name="colorPrimaryDark">#0000ca</color>
+<!--    <color name="colorPrimary">#002bff</color>-->
+<!--    <color name="colorPrimaryDark">#0000ca</color>-->
+<!--    <color name="colorAccent">#ffffff</color>-->
+
+    <color name="colorPrimary">#1A86FF</color>
+    <color name="colorPrimaryDark">#1778E5</color>
     <color name="colorAccent">#ffffff</color>
+
+    <color name="colorSuccess">#03CB9B</color>
+    <color name="colorError">#EE868B</color>
+    <color name="white">#FFFFFF</color>
+    <color name="grey_inactive">#EBEBEB</color>
+
+
+    <color name="caixa_blue">#1A86FF</color>
+    <color name="caixa_blue_dark">#1778E5</color>
 </resources>
