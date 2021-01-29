@@ -6,7 +6,7 @@
 
     <color name="colorPrimary">#1A86FF</color>
     <color name="colorPrimaryDark">#1778E5</color>
-    <color name="colorAccent">#ffffff</color>
+    <color name="colorAccent">#000000</color>
 
     <color name="colorSuccess">#03CB9B</color>
     <color name="colorError">#EE868B</color>

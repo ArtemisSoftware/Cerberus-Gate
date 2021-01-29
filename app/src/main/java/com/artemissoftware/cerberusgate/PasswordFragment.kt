@@ -30,7 +30,7 @@ class PasswordFragment : Fragment(), ActionListener,TextWatcher {
         savedInstanceState: Bundle?
     ): View? {
 
-        var fragmentView = inflater.inflate(R.layout.fragment_password, container, false);
+        var fragmentView = inflater.inflate(R.layout.fragment_password, container, false)
 
         password = fragmentView.findViewById(R.id.passwordView)
         tokenInput = fragmentView.findViewById(R.id.token_input)
@@ -92,7 +92,7 @@ class PasswordFragment : Fragment(), ActionListener,TextWatcher {
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
-        if ( count == 1) {
+        if (count == 1) {
             var char : String = s!!.get(start + before).toString()
             password.appendInputText(char)
         } else {
