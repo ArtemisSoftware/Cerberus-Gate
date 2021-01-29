@@ -63,7 +63,7 @@ class SuccessPopupFragment : Fragment(), TextWatcher {
 //            txtAmount.layoutParams = lolo
 
             var lolo = txtAmount.layoutParams
-            lolo.width = (txtAmount.textSize + ((txtAmount.textSize /1.5 ) * s.length)).toInt()//ViewGroup.LayoutParams.WRAP_CONTENT
+            lolo.width = (txtAmount.textSize + ((txtAmount.textSize /2.1 ) * s.length)).toInt()//ViewGroup.LayoutParams.WRAP_CONTENT
             txtAmount.layoutParams = lolo
 
 
