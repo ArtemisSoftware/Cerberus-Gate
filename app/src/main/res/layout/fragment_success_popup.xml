@@ -16,26 +16,21 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:background="@android:color/transparent"
-        android:text="Welcome to my gates &#128516; ahahha \uE924"
+        android:text="Welcome to my gates &#128516; ahahha "
         android:textColor="@android:color/black"
         android:textSize="16sp" />
 
 
     <androidx.emoji.widget.EmojiTextView
         android:layout_marginTop="40dp"
+        android:textSize="16sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="How many souls shall enter &#128516;"/>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:background="@android:color/transparent"
-        android:text="How many souls shall enter &#129395;"
         android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        android:background="@android:color/transparent"
+        android:text="@string/how_many_souls"/>
+
+
 
 
     <LinearLayout
@@ -60,7 +55,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="S"/>
+            android:text="Souls"/>
 
     </LinearLayout>
 
