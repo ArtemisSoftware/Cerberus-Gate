@@ -51,6 +51,7 @@ class PasswordFragment : Fragment(), ActionListener,TextWatcher {
 
         tokenInput.addTextChangedListener(this)
 
+
         return fragmentView
     }
 

@@ -1,8 +1,8 @@
 package com.artemissoftware.cerberusgate
 
 import android.app.Application
-import android.provider.FontRequest
 import android.util.Log
+import androidx.core.provider.FontRequest
 import androidx.emoji.text.EmojiCompat
 import androidx.emoji.text.FontRequestEmojiCompatConfig
 
@@ -20,15 +20,15 @@ class CerberusGateApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        val config: EmojiCompat.Config
 
-            // Use a downloadable font for EmojiCompat
-            val fontRequest = androidx.core.provider.FontRequest(
-                "com.google.android.gms.fonts",
-                "com.google.android.gms",
-                "Noto Color Emoji Compat",
-                R.array.com_google_android_gms_fonts_certs)
-            config = FontRequestEmojiCompatConfig(applicationContext, fontRequest)
+        // Use a downloadable font for EmojiCompat
+        val fontRequest = FontRequest(
+            "com.google.android.gms.fonts",
+            "com.google.android.gms",
+            "Noto Color Emoji Compat",
+            R.array.com_google_android_gms_fonts_certs)
+
+        val config = FontRequestEmojiCompatConfig(applicationContext, fontRequest)
                 .setReplaceAll(true)
                 .registerInitCallback(object : EmojiCompat.InitCallback() {
                     override fun onInitialized() {

@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputEditText
 
@@ -33,6 +34,8 @@ class SuccessPopupFragment : Fragment(), TextWatcher {
         txtAmount = fragmentView.findViewById(R.id.txt_amount)
         txtAmount.addTextChangedListener(this)
         txtAmount.hint = "00.00"
+
+        getActivity()?.getWindow()?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         return fragmentView
     }

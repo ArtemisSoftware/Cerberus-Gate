@@ -19,7 +19,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         bottomNavigation = findViewById(R.id.bottom_navigation);
         bottomNavigation.setOnNavigationItemSelectedListener(this)
 
-        openFragment(SuccessPopupFragment());
+        //openFragment(SuccessPopupFragment());
+        openFragment(PasswordFragment());
     }
 
 
