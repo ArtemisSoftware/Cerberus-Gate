@@ -1,13 +1,16 @@
 package com.artemissoftware.cerberusgate
 
+import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import com.artemissoftware.cerberusgate.databinding.FragmentPasswordBinding
 import com.artemissoftware.cerberusgate.util.Constants
 import com.artemissoftware.cerberusgate.util.SoftKeyboardUtils
 import com.google.android.material.textfield.TextInputEditText
@@ -21,6 +24,9 @@ class PasswordFragment : Fragment(), ActionListener,TextWatcher {
     private lateinit var password: PasswordView
     private lateinit var tokenInput: TextInputEditText
 
+    private var _binding: FragmentPasswordBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -30,13 +36,14 @@ class PasswordFragment : Fragment(), ActionListener,TextWatcher {
         savedInstanceState: Bundle?
     ): View? {
 
-        var fragmentView = inflater.inflate(R.layout.fragment_password, container, false)
+        _binding = FragmentPasswordBinding.inflate(inflater, container, false)
+        val fragmentView = binding.root
 
         password = fragmentView.findViewById(R.id.passwordView)
         tokenInput = fragmentView.findViewById(R.id.token_input)
 
         password.setListener(this)
-
+        
 
         password.setOnClickListener {
             tokenInput.clearFocus()
@@ -51,6 +58,9 @@ class PasswordFragment : Fragment(), ActionListener,TextWatcher {
 
         tokenInput.addTextChangedListener(this)
 
+//        val color_int = ContextCompat.getColor(context!!, R.color.colorError)
+//        val colorName = Color.BLACK
+//        binding.outline = ContextCompat.getColor(context, R.color.colorError);
 
         return fragmentView
     }

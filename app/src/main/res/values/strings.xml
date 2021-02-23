@@ -8,4 +8,5 @@
     <string name="please_type_your_pin">Please type your pin</string>
     <string name="auth_password">Password</string>
     <string name="how_many_souls">How many souls shall enter &#128516; &#129395; &#129395; ?</string>
+    <string name="submit">Submit</string>
 </resources>

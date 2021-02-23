@@ -16,4 +16,8 @@
 
     <color name="caixa_blue">#1A86FF</color>
     <color name="caixa_blue_dark">#1778E5</color>
+
+    <color name="backdrop_dark">#99000000</color>
+    <color name="colorSurface">#FFFFFF</color>
+
 </resources>
