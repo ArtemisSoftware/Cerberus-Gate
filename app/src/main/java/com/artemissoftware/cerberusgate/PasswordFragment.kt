@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.artemissoftware.cerberusgate.databinding.FragmentPasswordBinding
 import com.artemissoftware.cerberusgate.util.Constants
 import com.artemissoftware.cerberusgate.util.SoftKeyboardUtils
@@ -71,7 +72,7 @@ class PasswordFragment : Fragment(), ActionListener,TextWatcher {
             if(Constants.validatePassword(it)){
 
                 password.correctAnimation()
-                Toast.makeText(requireContext(), inputText, Toast.LENGTH_SHORT).show();
+                openFragment(SuccessPopupFragment())
             }
             else{
 
@@ -112,4 +113,10 @@ class PasswordFragment : Fragment(), ActionListener,TextWatcher {
     }
 
 
+    fun openFragment(fragment: Fragment) {
+        val transaction = activity!!.supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
 }

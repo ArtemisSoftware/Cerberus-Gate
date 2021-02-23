@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.google.android.material.textfield.TextInputEditText
 
 
@@ -19,6 +21,7 @@ private const val ARG_PARAM2 = "param2"
 class SuccessPopupFragment : Fragment(), TextWatcher {
 
     private lateinit var txtAmount: TextInputEditText
+    private lateinit var btnSubmit: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +39,14 @@ class SuccessPopupFragment : Fragment(), TextWatcher {
         txtAmount.hint = "00.00"
 
         getActivity()?.getWindow()?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
+
+        btnSubmit = fragmentView.findViewById(R.id.btn_submit)
+        btnSubmit.setOnClickListener {
+            val fm = activity!!.getSupportFragmentManager()
+            fm.popBackStack()
+        }
+
 
         return fragmentView
     }
