@@ -20,10 +20,22 @@ class Constants {
             }
 
             return  (code.length == PASSWORD_SIZE) && result
-
-
         }
 
+        fun validatePassword(code: String, passwordLength: Int): Boolean{
+
+            var result = true
+
+            Array(code.length) {code[it].toString()}.forEach {
+
+                if(it.equals(PASSWORD) == false){
+                    result = false;
+                    return@forEach
+                }
+            }
+
+            return  (code.length == passwordLength) && result
+        }
     }
 
 }

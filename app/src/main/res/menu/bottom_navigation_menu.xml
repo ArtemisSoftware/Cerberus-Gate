@@ -14,4 +14,8 @@
         android:icon="@drawable/ic_baseline_looks_3_24"
         android:title="@string/auth_password" />
 
+    <item
+        android:id="@+id/navigation_auth_four"
+        android:icon="@drawable/ic_baseline_looks_3_24"
+        android:title="@string/auth_matrix" />
 </menu>

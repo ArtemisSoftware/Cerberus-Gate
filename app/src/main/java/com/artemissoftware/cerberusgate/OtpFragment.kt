@@ -34,6 +34,8 @@ class OtpFragment : Fragment(), OnOtpCompletionListener  {
         otpView = fragmentView.findViewById(R.id.otp_view);
         otpView.setOtpCompletionListener(this)
 
+
+        (requireActivity() as MainActivity).updateStatusBarColor(R.color.colorError)
         return fragmentView
     }
 

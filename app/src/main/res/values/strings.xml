@@ -5,8 +5,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="type_your_password">Type your \nPassword</string>
+    <string name="type_your_matrix">Type your \nMatrix</string>
     <string name="please_type_your_pin">Please type your pin</string>
     <string name="auth_password">Password</string>
+    <string name="auth_matrix">Matrix</string>
     <string name="how_many_souls">How many souls shall enter &#128516; &#129395; &#129395; ?</string>
     <string name="submit">Submit</string>
 </resources>

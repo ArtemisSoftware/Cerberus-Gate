@@ -42,6 +42,14 @@
         app:OtpViewType="rectangle"
         />
 
+    <RadioButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:checked="false"
+
+        android:button="@drawable/radio_button_selector"
+        android:padding="10dp"/>
+
 
 <!--    <com.opencraft.gcherubini.typeyourpin.TypeYourPinLayout-->
 <!--        android:id="@+id/type_your_pin_layout"-->
