@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +24,7 @@ class MatrizPasswordFragment : Fragment() {
 
 
     private var passwords = mutableListOf<PasswordView>()
+    private var tokenInputs = mutableListOf<TextInputEditText>()
 
     private lateinit var password1: PasswordView
     private lateinit var tokenInput1: TextInputEditText
@@ -53,37 +55,39 @@ class MatrizPasswordFragment : Fragment() {
         password1 = fragmentView.findViewById(R.id.passwordView1)
         password2 = fragmentView.findViewById(R.id.passwordView2)
         password3 = fragmentView.findViewById(R.id.passwordView3)
-        tokenInput1 = fragmentView.findViewById(R.id.token_input_1)
 
         passwords.add(password1)
         passwords.add(password2)
         passwords.add(password3)
 
-        passwords.forEach { item -> item.onClick(tokenInput1) }
+        tokenInput1 = fragmentView.findViewById(R.id.token_input_1)
+        tokenInput2 = fragmentView.findViewById(R.id.token_input_2)
+        tokenInput3 = fragmentView.findViewById(R.id.token_input_3)
+
+        tokenInputs.add(tokenInput1)
+        tokenInputs.add(tokenInput2)
+        tokenInputs.add(tokenInput3)
 
 
-        tokenInput1.onChange(passwordView = password1, textView =  tokenInput1)
 
-        //--password1.setListener(this)
-//
-//
-//        password1.setOnClickListener {
-//            tokenInput1.clearFocus()
-//            tokenInput1.requestFocus()
-//        }
 
-        tokenInput1.setOnFocusChangeListener { v, hasFocus ->
-            if (hasFocus) {
-                SoftKeyboardUtils.openSoftKeyboard(activity, v)
-            }
+        //--passwords.forEach { item -> item.onClick(tokenInput1) }
+
+        for (i in passwords.indices) {
+            passwords[i].onClick(tokenInputs[i])
+            tokenInputs[i].onChange(passwordView = passwords[i], textView =  tokenInputs[i])
+            tokenInputs[i].onKeyFocusListener()
         }
-
 
 //        (requireActivity() as MainActivity).updateStatusBarColor(R.color.colorSuccess)
 
         return fragmentView
     }
 
+
+    //--------------
+    //
+    //--------------
 
     private fun matrizComplete(): Boolean{
 
@@ -98,14 +102,79 @@ class MatrizPasswordFragment : Fragment() {
         return result;
     }
 
+    private fun executeValidPassword(){
 
+        val inputText = tokenInput1.text.toString() + tokenInput2.text.toString() + tokenInput3.text.toString()
+
+        if(Constants.validatePassword(inputText, 3)){
+            passwords.forEach { item -> item.correctAnimation() }
+        }
+        else{
+
+            passwords.forEach { item -> item.incorrectAnimation() }
+
+            Handler(Looper.getMainLooper()).postDelayed({
+
+                passwords.forEach { item -> item.reset() }
+                tokenInputs.forEach { item -> item.setText("") }
+                tokenInputs[0].requestFocus();
+
+            }, 500)
+
+        }
+    }
+
+
+
+
+    //--------------
+    //
+    //--------------
 
     private fun PasswordView.onClick(tokenInput: TextInputEditText){
         this.setOnClickListener {
             tokenInput.clearFocus()
             tokenInput.requestFocus()
+
         }
     }
+
+    private var salta = false
+
+    private fun TextInputEditText.onKeyFocusListener(){
+
+        this.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                SoftKeyboardUtils.openSoftKeyboard(activity, v)
+            }
+        }
+
+        this.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_DEL ) {
+
+                if((v as TextInputEditText).text.toString().equals("")) {
+
+                    if(salta) {
+                        try {
+                            val indexT = tokenInputs.indexOf(v)
+                            //tokenInputs[indexT - 1].setText("")
+                            tokenInputs[indexT - 1].requestFocus();
+                            //passwords[indexT - 1].removeInputText()
+                            //passwords[indexP + 1].onClick(tokenInputs[indexT + 1])
+                        } catch (e: IndexOutOfBoundsException) {
+                        }
+                    }
+                    salta = true
+                    return@OnKeyListener true
+                }
+                else{
+                    return@OnKeyListener false
+                }
+            }
+            false
+        })
+    }
+
 
 
     private fun TextInputEditText.onChange(passwordView: PasswordView, textView: TextInputEditText) {
@@ -114,36 +183,29 @@ class MatrizPasswordFragment : Fragment() {
 
                 if (matrizComplete()) {
                     SoftKeyboardUtils.closeSoftKeyboard(activity)
-
-                    val inputText = tokenInput1.text
-
-                    if(Constants.validatePassword(inputText.toString()!!, 3)){
-
-                        passwords.forEach { item -> item.correctAnimation() }
-
-                    }
-                    else{
-
-                        passwords.forEach { item -> item.incorrectAnimation() }
-
-
-                        Handler(Looper.getMainLooper()).postDelayed({
-
-                            passwords.forEach { item -> item.reset() }
-
-                            tokenInput1.setText("")
-                        }, 500)
-
-                    }
-
-
-                    //--setLoadingState(true)
-                    //--listener.validateToken(otpCode.toString(), this@SmsRequestFragment)
+                    //executeValidPassword()
                 }
+                else{
 
+                    try{
+                        if(textView.text!!.toString().equals("") == false) {
+                            val indexT = tokenInputs.indexOf(textView)
+                            tokenInputs[indexT + 1].requestFocus();
+                            //passwords[indexP + 1].onClick(tokenInputs[indexT + 1])
+                        }
+                    }
+                    catch (e: IndexOutOfBoundsException){}
 
+                }
             }
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                if(s?.length == 1) {
+                    salta = false
+                }
+                else{
+                    salta =  true
+                }
+            }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
                 //--passwordView.addCircleViewstroke(Color.parseColor(getResources().getString(R.color.grey_inactive)))
@@ -152,28 +214,27 @@ class MatrizPasswordFragment : Fragment() {
                 var char : String = "1"
                 if(s?.length == 1) {
 
-                    password1.appendInputText(char)
-                    password2.removeInputText()
-                }
-                else if(s?.length == 2) {
+                    passwordView.appendInputText(char)
 
-                    password2.appendInputText(char)
-                    password3.removeInputText()
-                }
-                else if(s?.length == 3) {
-
-                    password3.appendInputText(char)
                 }
                 else {
 
-                    passwords.forEach { item -> item.removeInputText() }
+                    passwordView.removeInputText()
+
+                    try{
+                        //val indexT = tokenInputs.indexOf(textView)
+                        //tokenInputs[indexT - 1].requestFocus();
+                    }
+                    catch (e: IndexOutOfBoundsException){}
+
+
+                    //tokenInputs[indexT + 1].requestFocus();
+                    //passwords.forEach { item -> item.removeInputText() }
                 }
 
             }
         })
     }
-
-
 
 
 
